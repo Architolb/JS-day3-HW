@@ -17,8 +17,25 @@ let person3 = {
         cupids_candies:"Chocolate Malt"
     }]
 }
-console.log(person3);  
+// console.log(person3);  
+let parseObject = (food) => {
+  for (p in person3){
+    if (typeof person3[p] === 'string'){
+    console.log(person3[p]);
+    } else {
+        if (typeof person3[p][0] === 'string'){
+          for(let i = 0; i<person3[p].length; i++){
+            console.log(person3[p][i]);
+          }
+        } else {
+            for (x in person3[p][0]){
+              console.log(person3[p][0][x]);
 
+            }
+        }
+    }
+  }
+}
 
 
 
