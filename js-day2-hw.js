@@ -17,22 +17,21 @@ let person3 = {
         cupids_candies:"Chocolate Malt"
     }]
 }
-// console.log(person3);  
-let parseObject = (food) => {
+
+let parseObject = (obj) => {
   for (p in person3){
     if (typeof person3[p] === 'string'){
     console.log(person3[p]);
     } else {
-        if (typeof person3[p][0] === 'string'){
-          for(let i = 0; i<person3[p].length; i++){
-            console.log(person3[p][i]);
-          }
-        } else {
-            for (x in person3[p][0]){
-              console.log(person3[p][0][x]);
-
-            }
+      if (typeof person3[p][0] === 'string'){
+        for(let i = 0; i<person3[p].length; i++){
+          console.log(person3[p][i]);
         }
+      } else {
+        for (x in person3[p][0]){
+          console.log(person3[p][0][x]);
+        }
+      }
     }
   }
 }
@@ -48,34 +47,30 @@ Create two people using the 'new' keyword, and print
 both of their infos and increment one persons
 age by 3 years. Use an arrow function for both methods
 */
-console.log('\n\nCustom Object Prototypes:');
+// console.log('\n\nCustom Object Prototypes:');
 // Create our Person Prototype
-class People {
-  constructor(name, age=34){
+function Person(name, age){
     this.name = name;
     this.age = age;
-  }
+  
 
-  printInfo(){
-    console.log(`${this.name} is ${this.age} years old.`)
-  }
-
+  this.printInfo = () => {console.log(`${this.name} is ${this.age} years old.`)}
+  this.incrementAge = (v) => {this.age += v}
 }
 
-let person1 = new People('Cliff');
-console.log(typeof person1);
+let person1 = new Person('Cliff',45)
+// console.log(typeof person1);
+let person4 = new Person('Jeff',44)
+// console.log(typeof person4);
+let person2 = new Person('Jane',43)
+// console.log(typeof person2);
+
+person2.printInfo();
 person1.printInfo();
 
-let person4 = new People('Jeff',44);
-console.log(typeof person4);
 person4.printInfo();
-  
-  
-let person2 = new People('Jane');
-console.log(typeof person2);
-person2.printInfo();
-
-
+person4.incrementAge(3);
+person4.printInfo();
 
 // Use an arrow to create the printInfo method
 
@@ -90,6 +85,24 @@ person2.printInfo();
     If the length is greater than ten console log "Big word". 
     If the length of the string is less than 10 console log "Small Number"
 */
+
+let longstring = (word) => {
+  return new Promise((resolve, reject) => {
+    if (word.length > 10){
+      resolve(word);
+    } else {
+        reject(word);
+    }
+  })
+
+}
+
+longstring('Hippopotomonstrosesquippedaliophobia').then((w) => {console.log(`${w} is a big word.`)}).catch((w) => {console.log(`${w} is a small word. Small number?`)});
+
+
+
+
+
 
 // 1.  Complete the solution so that it splits the string into pairs of two characters. If the string contains an odd number of characters then it should replace the missing second character of the final pair with an underscore ('_').
 
